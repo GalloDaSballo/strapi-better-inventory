@@ -13,3 +13,24 @@
   border-radius: 3px;
   padding: 24px;
 }
+
+
+.AddStock__button{
+  padding: 12px 24px;
+  border-radius: 5px;
+  background: #2ecc71;
+  color: white;
+  font-size: 22px;
+}
+
+.Nav__Link{
+  padding: 12px;
+  text-decoration: none;
+}
+.Nav__Link.active{
+  text-decoration: underline;
+}
+
+.Nav__Link:first-of-type{
+  padding-left: 0;
+}

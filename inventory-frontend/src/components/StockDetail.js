@@ -13,8 +13,8 @@ class StockDetail extends React.Component{
         <h2>Product: {name}  | Total: {total}</h2>
         {show &&
           <div>
-            {stockEvents.map(event => (
-              <div className="StockEventTable__Card">
+            {stockEvents.map((event, i) => (
+              <div key={i} className="StockEventTable__Card">
                 <p>Id: {event.id}</p>
                 <p>Type: {event.type}</p>
                 <p>Quantity: {event.qty}</p>

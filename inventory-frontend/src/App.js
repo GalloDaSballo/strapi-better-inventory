@@ -1,28 +1,14 @@
 import React from 'react';
 import axios from 'axios'
 
-import './App.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+
 import StockEventsTable from './components/StockEventsTable'
+import AddStockEvent from './components/AddStockEvent'
+import AddProduct from './components/AddProduct'
+import Nav from './components/Nav'
 
-
-//2 Data Types
-
-//Products
-const fetchedProducts = [
-  {id: 1, name: "Super Maroo"},
-  {id: 2, name: "Weege's monsoon"}
-]
-
-//stockEvents
-const fetchedStockEvents = [
-  {id: 1, type: 'add', qty: 100, product: fetchedProducts[0]},
-  {id: 2, type: 'remove', qty: -20, product: fetchedProducts[0]},
-  {id: 3, type: 'remove', qty: -10, product: fetchedProducts[0]},
-
-  {id: 4, type: 'add', qty: 120, product: fetchedProducts[1]},
-  {id: 5, type: 'remove', qty: -45, product: fetchedProducts[1]},
-   // type: 'add' || 'remove'
-]
+import './App.css';
 
 //We are going to fetch all of the stock events
 
@@ -31,8 +17,8 @@ const fetchedStockEvents = [
 //We are going to display them
 class App extends React.Component{
   state = {
-    fetchedProducts,
-    fetchedStockEvents,
+    fetchedProducts: [],
+    fetchedStockEvents: [],
   }
 
   async componentDidMount(){
@@ -60,13 +46,27 @@ class App extends React.Component{
 
     return (
       <div className="App">
-        <h1>The Stock App</h1>
+        <BrowserRouter>
+          <Nav />
 
-        <StockEventsTable
-          products={fetchedProducts}
-          stockEvents={fetchedStockEvents}
-        />
+          <Switch>
+            <Route exact path="/products">
+              <AddProduct />
+            </Route>
 
+            <Route exact path="/stock/add">
+              <AddStockEvent products={fetchedProducts} />
+            </Route>
+
+            <Route exact path="/stock">
+              <StockEventsTable
+                products={fetchedProducts}
+                stockEvents={fetchedStockEvents}
+              />
+            </Route>
+
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
